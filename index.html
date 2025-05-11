@@ -38,6 +38,17 @@
             <button id="downloadBtn" disabled>Download JSON</button>
             <button id="practiceQuizBtn" disabled>Practice Quiz</button>
         </div>
+
+        <!-- New Section for Uploading and Practicing Existing JSON -->
+        <hr style="margin-top: 20px; margin-bottom: 20px;">
+        <div class="upload-practice-section">
+            <h2>Practice Existing Quiz from File</h2>
+            <div class="form-group">
+                <label for="uploadJsonFileInput">Upload Quiz JSON File (.json):</label>
+                <input type="file" id="uploadJsonFileInput" accept=".json,application/json">
+            </div>
+            <button id="practiceUploadedJsonBtn">Practice Uploaded Quiz</button>
+        </div>
     </div>
 
     <script src="script.js"></script>
