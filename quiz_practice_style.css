@@ -1,0 +1,330 @@
+/* quiz_practice_style.css */
+
+/* --- Base & Variables (Reused from previous style for consistency) --- */
+:root {
+    --primary-color: #007bff;
+    --primary-hover-color: #0056b3;
+    --secondary-color: #6c757d;
+    --light-gray: #f8f9fa;
+    --medium-gray: #e9ecef;
+    --dark-gray: #343a40;
+    --text-color: #212529;
+    --border-color: #ced4da;
+    --success-color: #28a745;
+    --success-hover-color: #1e7e34;
+    --danger-color: #dc3545;
+    --danger-hover-color: #c82333;
+    --warning-color: #ffc107; /* For neutral feedback or highlights */
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --border-radius: 0.3rem;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --container-padding: 2.5rem;
+    --button-padding: 0.6rem 1.2rem;
+}
+
+/* --- General Reset & Body --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--light-gray);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+}
+
+/* --- Main Containers (Quiz, Results, No Quiz Message) --- */
+.quiz-container,
+.results-container,
+.no-quiz {
+    background-color: #ffffff;
+    padding: var(--container-padding);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    max-width: 700px; /* Consistent max-width */
+    text-align: center; /* Default to center for these containers */
+}
+
+.no-quiz {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px; /* Give it some body */
+}
+
+/* --- Typography --- */
+h1, h2 {
+    color: var(--dark-gray);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+h1#quizTitle {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.results-container h2 {
+    font-size: 1.6rem;
+    color: var(--primary-color);
+}
+
+.no-quiz h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.question-header {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+}
+
+.question-text {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+    text-align: left; /* Questions usually better left-aligned */
+}
+
+/* --- Progress Bar --- */
+.progress-bar-container {
+    width: 100%;
+    background-color: var(--medium-gray);
+    border-radius: var(--border-radius);
+    margin-bottom: 1.5rem;
+    overflow: hidden; /* Ensure progress bar stays within bounds */
+    height: 20px; /* Define a height */
+}
+
+.progress-bar {
+    width: 0%; /* Initial width */
+    height: 100%;
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    line-height: 20px; /* Vertically center text */
+    font-size: 0.8rem;
+    font-weight: bold;
+    transition: width 0.3s ease-in-out;
+}
+
+/* --- Options List --- */
+.options-list {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+    text-align: left; /* Options better left-aligned */
+}
+
+.options-list li {
+    background-color: var(--light-gray);
+    border: 1px solid var(--border-color);
+    padding: 0.8rem 1.2rem;
+    margin-bottom: 0.75rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+    display: flex; /* For better alignment of potential prefixes like A) */
+    align-items: center;
+}
+
+.options-list li:hover {
+    background-color: var(--medium-gray);
+    border-color: var(--secondary-color);
+    transform: translateX(3px);
+}
+
+.options-list li.selected {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-hover-color);
+}
+
+.options-list li.correct {
+    background-color: var(--success-color) !important; /* Override selected if also correct */
+    color: white !important;
+    border-color: var(--success-hover-color) !important;
+    cursor: default;
+}
+
+.options-list li.incorrect {
+    background-color: var(--danger-color) !important; /* Override selected if also incorrect */
+    color: white !important;
+    border-color: var(--danger-hover-color) !important;
+    cursor: default;
+}
+
+.options-list li.disabled {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+/* --- Feedback & Explanation Areas --- */
+.feedback,
+.explanation {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.feedback.correct-feedback {
+    background-color: #e6ffed; /* Light green */
+    border: 1px solid var(--success-color);
+    color: #1d5729;
+}
+
+.feedback.incorrect-feedback {
+    background-color: #ffeeee; /* Light red */
+    border: 1px solid var(--danger-color);
+    color: #7f2324;
+}
+
+.explanation {
+    background-color: var(--light-gray);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+.explanation strong {
+    color: var(--dark-gray);
+}
+
+
+/* --- Navigation & Action Buttons --- */
+.navigation-buttons,
+.results-container {
+    margin-top: 1.5rem;
+}
+
+button {
+    padding: var(--button-padding);
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: var(--border-radius);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:active:not(:disabled) {
+    transform: translateY(0px);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#nextQuestionBtn {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    width: auto; /* Allow natural width or set a min-width if preferred */
+    min-width: 150px;
+}
+#nextQuestionBtn:hover:not(:disabled) {
+    background-color: var(--primary-hover-color);
+}
+
+#restartQuizBtn {
+    background-color: var(--success-color);
+    color: #ffffff;
+    min-width: 200px;
+}
+#restartQuizBtn:hover:not(:disabled) {
+    background-color: var(--success-hover-color);
+}
+
+button:disabled {
+    background-color: var(--medium-gray);
+    color: #868e96;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* --- Links --- */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    color: var(--primary-hover-color);
+    text-decoration: underline;
+}
+
+/* --- Results Area Specifics --- */
+#scoreText, #percentageText {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+}
+
+#percentageText {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 600px) {
+    body {
+        padding: 1rem 0.5rem;
+    }
+    .quiz-container,
+    .results-container,
+    .no-quiz {
+        padding: 1.5rem;
+        margin: 0.5rem;
+    }
+    h1#quizTitle {
+        font-size: 1.6rem;
+    }
+    .results-container h2, .no-quiz h2 {
+        font-size: 1.4rem;
+    }
+    .question-text {
+        font-size: 1.1rem;
+    }
+    .options-list li {
+        padding: 0.7rem 1rem;
+    }
+    button {
+        font-size: 0.95rem;
+        padding: 0.5rem 1rem; /* Adjust button padding from var for finer control if needed */
+        width: 100%; /* Make buttons full width */
+        margin-bottom: 0.5rem; /* Add space between stacked buttons */
+    }
+    button:last-child {
+        margin-bottom: 0;
+    }
+    #nextQuestionBtn, #restartQuizBtn {
+        min-width: unset;
+    }
+}

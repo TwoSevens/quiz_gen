@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Quiz</title>
+    <link rel="stylesheet" href="quiz_practice_style.css">
+</head>
+<body>
+
+    <div class="quiz-container" id="quizArea" style="display:none;">
+        <h1 id="quizTitle">Quiz Title</h1>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar">0%</div>
+        </div>
+        <div id="questionNumber" class="question-header">Question X of Y</div>
+        <div id="questionText" class="question-text">Question will load here...</div>
+        <ul id="optionsList" class="options-list">
+            </ul>
+        <div id="feedbackArea" class="feedback" style="display:none;"></div>
+        <div id="explanationArea" class="explanation" style="display:none;"></div>
+        <div class="navigation-buttons">
+            <button id="nextQuestionBtn" style="display:none;">Next Question</button>
+        </div>
+    </div>
+
+    <div class="results-container" id="resultsArea" style="display:none;">
+        <h2>Quiz Completed!</h2>
+        <p id="scoreText">Your score: X / Y</p>
+        <p id="percentageText">Percentage: Z%</p>
+        <button id="restartQuizBtn">Practice Another Quiz</button>
+    </div>
+
+    <div id="noQuizMessage" class="no-quiz" style="display:none;">
+        <h2>No Quiz Data Found</h2>
+        <p>Please <a href="index.html">generate a quiz</a> first to practice.</p>
+    </div>
+
+    <script src="quiz_practice_script.js"></script>
+
+</body>
+</html>

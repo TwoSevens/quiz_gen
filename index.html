@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Quiz Generator (Direct API)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>AI MCQ Quiz Generator (Direct API Call)</h1>
+
+        <div class="form-group">
+            <label for="apiKeyInput">Google AI API Key:</label>
+            <input type="text" id="apiKeyInput" placeholder="Enter your API Key here">
+        </div>
+
+        <div class="form-group">
+            <label for="fileInput">Upload Context File (e.g., .txt, .md - optional):</label>
+            <input type="file" id="fileInput" accept=".txt,.md,.pdf,.docx">
+        </div>
+
+        <div class="form-group">
+            <label for="instructionsInput">Further Instructions for the Quiz:</label>
+            <textarea id="instructionsInput" placeholder="e.g., Create 5 multiple choice questions about the main topics. Difficulty: Medium. Focus on definitions. Ensure questions are unique."></textarea>
+        </div>
+
+        <button id="generateBtn">Generate Quiz</button>
+        <span id="loadingIndicator" style="display:none;">Generating... This might take a moment.</span>
+
+        <div id="outputBlock" style="display:none;">
+            <h2>Generated Quiz (JSON)</h2>
+            <div class="form-group">
+                <textarea id="jsonOutput" readonly></textarea>
+            </div>
+            <button id="copyBtn" disabled>Copy JSON</button>
+            <button id="downloadBtn" disabled>Download JSON</button>
+            <button id="practiceQuizBtn" disabled>Practice Quiz</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
