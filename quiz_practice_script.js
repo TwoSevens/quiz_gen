@@ -12,6 +12,7 @@ const nextQuestionBtn = document.getElementById('nextQuestionBtn');
 const scoreTextEl = document.getElementById('scoreText');
 const percentageTextEl = document.getElementById('percentageText');
 const restartQuizBtn = document.getElementById('restartQuizBtn');
+const retryQuizBtn = document.getElementById('retryQuizBtn'); // Get reference to the new button
 const progressBarEl = document.getElementById('progressBar');
 
 let quizData = null;
@@ -152,14 +153,32 @@ function showResults() {
     percentageTextEl.textContent = `Percentage: ${percentage}%`;
 
     // Final progress bar update to 100%
-    progressBarEl.style.width = `100%`;
-    progressBarEl.textContent = `100%`;
+    // We don't need to show the progress bar on the results screen,
+    // but if it were visible, this would be correct.
+    // It will be reset correctly when the quiz is retried.
 }
 
 restartQuizBtn.addEventListener('click', () => {
     // Go back to the generator page (assuming it's index.html)
     window.location.href = "index.html";
 });
+
+// Event listener for the new Retry button
+retryQuizBtn.addEventListener('click', () => {
+    // Reset quiz state
+    currentQuestionIndex = 0;
+    score = 0;
+    answerSubmitted = false; // Though displayQuestion will also set this
+
+    // Hide results, show quiz area
+    resultsArea.style.display = 'none';
+    quizArea.style.display = 'block';
+
+    // Display the first question
+    displayQuestion();
+    // The progress bar will be updated by displayQuestion -> updateProgressBar
+});
+
 
 // Initialize
 if (loadQuizData()) {
